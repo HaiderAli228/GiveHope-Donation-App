@@ -1,3 +1,4 @@
+import 'package:donation_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -7,7 +8,10 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar:  AppBar(
         centerTitle: true,
-        title: Text("GiveHope"),
+        title: Text("GiveHope",style: TextStyle(
+          color: AppColor.themeColor,
+
+        ),),
       ),
     );
   }
