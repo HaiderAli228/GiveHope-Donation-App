@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ToastMessage{
   static toastMsg(String msgIs){
     return  Fluttertoast.showToast(
-        msg: "This is Center Short Toast",
+        msg: msgIs,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
