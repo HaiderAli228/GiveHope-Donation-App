@@ -1,3 +1,4 @@
+import 'package:donation_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundBodyColor,
       appBar: AppBar(
         title: const Text('Login'),
       ),
@@ -30,10 +32,19 @@ class LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            children: <Widget>[
+            children: [
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: AppColor.lightColor)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: AppColor.lightColor))),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
@@ -43,17 +54,31 @@ class LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
               ),
               const SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () {
+              InkWell(
+                onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    // Form is valid, proceed with login
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Logging in...')),
                     );
                   }
                 },
-                child: const Text('Login'),
-              ),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(6),
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColor.themeColor),
+                  child: const Text(
+                    "Login ",
+                    style: TextStyle(
+                      color: AppColor.themeTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
