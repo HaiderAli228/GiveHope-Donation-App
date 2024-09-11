@@ -5,5 +5,6 @@ class AppColor {
   static const Color themeTextColor = Colors.white;
   static const Color backgroundBodyColor = Colors.white;
   static  Color lightColor = Colors.grey.shade100;
+  // static  Color themeColor = const Color(036903);
 
 }
