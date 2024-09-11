@@ -43,6 +43,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   timelines: ^0.1.0
   fl_chart: ^0.69.0
+  introduction_screen: ^3.1.14
 
 dev_dependencies:
   flutter_test:
