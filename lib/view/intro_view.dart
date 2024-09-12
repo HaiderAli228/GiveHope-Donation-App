@@ -21,25 +21,21 @@ class _IntroScreenState extends State<IntroScreen> {
             titleWidget: buildTitle('Welcome to GiveHope'),
             bodyWidget: buildBody(
                 'Welcome to GiveHope, your platform for making a difference. Whether you want to donate clothes, food, or money, our app connects your generosity with those who need it most. With just a few taps, you can help provide essential items to families, individuals, and communities in need. Every donation, big or small, brings hope and support, making the world a better place one contribution at a time. Join us in spreading kindness and making a meaningful impact!'),
-            image: buildImage('assets/images/intro1.png'),
+            image: Image.asset(
+              "assets/images/intro2.png",
+            ),
             decoration: getPageDecoration(),
           ),
           PageViewModel(
             titleWidget: buildTitle('Donation of Clothes'),
             bodyWidget: buildBody(
-                'Donating clothes is a simple yet impactful way to support those in need and promote sustainability. By giving away gently used items, you can help individuals and families access essential clothing while reducing waste. Your contribution not only offers comfort and dignity to others but also extends the life of garments that might otherwise go to landfills.'),
-            image: buildImage('assets/images/intro2.png'),
-            decoration: getPageDecoration(),
-          ),
-          PageViewModel(
-            titleWidget: buildTitle('Stay Connected'),
-            bodyWidget: buildBody('This is the second intro page.'),
-            image: buildImage('assets/images/intro3.png'),
+                'Donating clothes is a simple yet impactful way to support those in need and promote sustainability. By giving away gently used items, you can help individuals and families access essential clothing while reducing waste.'),
+            image: Image.asset("assets/images/intro1.png"),
             decoration: getPageDecoration(),
           ),
           PageViewModel(
             titleWidget: buildTitle('Get Started'),
-            bodyWidget: buildBody('This is the third and final intro page.'),
+            bodyWidget: buildBody('GiveHope is platform where your generosity meets impact! Join us in making a difference by supporting causes that matter most.'),
             image: buildImage('assets/images/intro4.png'),
             decoration: getPageDecoration(),
           ),

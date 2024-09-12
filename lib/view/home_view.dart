@@ -6,18 +6,31 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "GiveHope",
-          style: TextStyle(
-            color: AppColor.themeColor,
-            fontFamily: "Poppins"
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColor.backgroundBodyColor,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    "GiveHope",
+                    style: TextStyle(
+                        color: AppColor.themeColor,
+                        fontFamily: "Poppins",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.notifications_active))
+                ],
+              )
+            ],
           ),
         ),
       ),
-
     );
   }
 }
