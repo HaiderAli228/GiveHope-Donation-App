@@ -9,25 +9,74 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColor.backgroundBodyColor,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+        drawer: Drawer(
+          backgroundColor: AppColor.backgroundBodyColor,
           child: Column(
             children: [
-              Row(
-                children: [
-                  const Text(
-                    "GiveHope",
+              const UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(color: AppColor.themeColor),
+                  accountName: Text(
+                    "Haider Ali",
                     style: TextStyle(
-                        color: AppColor.themeColor,
-                        fontFamily: "Poppins",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                        fontFamily: "Poppins", fontWeight: FontWeight.bold),
                   ),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.notifications_active))
-                ],
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      "PIC",
+                      style: TextStyle(
+                          color: AppColor.themeColor,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  accountEmail: Text(
+                    "example@gmail.com",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                    ),
+                  )),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                child: ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(8), // Adjust the radius as needed
+                  child: Container(
+                    color: AppColor.themeTileColor, //
+                    child: const ListTile(
+                      leading: Icon(
+                        Icons.person,
+                        color: AppColor.themeColor,
+                      ),
+                      title: Text(
+                        "Account",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
+          ),
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            "GiveHope",
+            style: TextStyle(
+                color: AppColor.themeColor,
+                fontFamily: "Poppins",
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [],
           ),
         ),
       ),
