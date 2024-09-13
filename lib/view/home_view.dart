@@ -58,7 +58,30 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                child: ClipRRect(
+                  borderRadius:
+                  BorderRadius.circular(8), // Adjust the radius as needed
+                  child: Container(
+                    color: AppColor.themeTileColor, //
+                    child: const ListTile(
+                      leading: Icon(
+                        Icons.settings,
+                        color: AppColor.themeColor,
+                      ),
+                      title: Text(
+                        "Setting",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
