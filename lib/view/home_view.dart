@@ -1,4 +1,5 @@
 import 'package:donation_app/utils/app_color.dart';
+import 'package:donation_app/utils/drawer_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -36,52 +37,46 @@ class HomeView extends StatelessWidget {
                       fontFamily: "Poppins",
                     ),
                   )),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                child: ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(8), // Adjust the radius as needed
-                  child: Container(
-                    color: AppColor.themeTileColor, //
-                    child: const ListTile(
-                      leading: Icon(
-                        Icons.person,
-                        color: AppColor.themeColor,
-                      ),
-                      title: Text(
-                        "Account",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                        ),
-                      ),
-                    ),
-                  ),
+              DrawerTile(
+                iconIs: const Icon(
+                  Icons.account_box,
+                  color: AppColor.themeColor,
                 ),
+                name: "Profile",
+                function: () {},
               ),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                child: ClipRRect(
-                  borderRadius:
-                  BorderRadius.circular(8), // Adjust the radius as needed
-                  child: Container(
-                    color: AppColor.themeTileColor, //
-                    child: const ListTile(
-                      leading: Icon(
-                        Icons.settings,
-                        color: AppColor.themeColor,
-                      ),
-                      title: Text(
-                        "Setting",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                        ),
-                      ),
-                    ),
-                  ),
+              DrawerTile(
+                iconIs: const Icon(
+                  Icons.history,
+                  color: AppColor.themeColor,
                 ),
+                name: "Transaction History",
+                function: () {},
               ),
+              DrawerTile(
+                iconIs: const Icon(
+                  Icons.rule,
+                  color: AppColor.themeColor,
+                ),
+                name: "Term & Condition",
+                function: () {},
+              ),
+              DrawerTile(
+                iconIs: const Icon(
+                  Icons.color_lens,
+                  color: AppColor.themeColor,
+                ),
+                name: "Change Theme",
+                function: () {},
+              ),
+              DrawerTile(
+                iconIs: const Icon(
+                  Icons.settings,
+                  color: AppColor.themeColor,
+                ),
+                name: "Setting",
+                function: () {},
+              )
             ],
           ),
         ),
