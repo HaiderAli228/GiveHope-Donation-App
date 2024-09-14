@@ -52,9 +52,15 @@ class _IntroScreenState extends State<IntroScreen> {
                   children: [
                     buildBody(
                         'GiveHope is a platform where your generosity meets impact! Join us in making a difference.'),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 40),
+                    // Get Started button with navigation
                     buildButton(
-                        text: "Get Started"), // Added Get Started Button
+                      text: "Get Started",
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(RoutesName.homeScreen);
+                      },
+                    ),
                   ],
                 ),
                 image: buildImage('assets/images/last2.png'),
@@ -175,31 +181,34 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  Widget buildButton({String? text, IconData? icon}) {
-    return Container(
-      height: 50,
-      width: text != null
-          ? MediaQuery.of(context).size.width
-          : 70, // Adjusted width based on button type
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColor.themeColor,
-        borderRadius: BorderRadius.circular(8),
+  Widget buildButton({String? text, IconData? icon, VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap, // Added onTap for button actions
+      child: Container(
+        height: 50,
+        width: text != null
+            ? MediaQuery.of(context).size.width
+            : 70, // Adjusted width based on button type
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColor.themeColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: text != null
+            ? Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontFamily: "Poppins",
+          ),
+        )
+            : Icon(
+          icon,
+          color: Colors.white,
+        ),
       ),
-      child: text != null
-          ? Text(
-              text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Poppins",
-              ),
-            )
-          : Icon(
-              icon,
-              color: Colors.white,
-            ),
     );
   }
 }
