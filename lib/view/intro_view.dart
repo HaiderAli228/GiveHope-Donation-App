@@ -15,88 +15,138 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: IntroductionScreen(
-        pages: [
-          PageViewModel(
-            titleWidget: buildTitle('Welcome to GiveHope'),
-            bodyWidget: buildBody(
-                'Welcome to GiveHope, your platform for making a difference. Whether you want to donate clothes, food, or money, our app connects your generosity with those who need it most. With just a few taps, you can help provide essential items to families, individuals, and communities in need. Every donation, big or small, brings hope and support, making the world a better place one contribution at a time. Join us in spreading kindness and making a meaningful impact!'),
-            image: Image.asset(
-              "assets/images/intro2.png",
+      body: Stack(
+        children: [
+          IntroductionScreen(
+            pages: [
+              PageViewModel(
+                titleWidget: buildTitle(
+                  "Welcome to ",
+                  "GiveHope ",
+                  "platform",
+                ),
+                bodyWidget: buildBody(
+                    'GiveHope believe that We make a living by what we get, but we make a life by what we give. Believe you can and you are halfway there. – Theodore Roosevelt'),
+                image: buildImage('assets/images/intro2.png'),
+                decoration: getPageDecoration(),
+              ),
+              PageViewModel(
+                titleWidget: buildTitle(
+                  "Join hands, to make better ",
+                  "Hope",
+                  "",
+                ),
+                bodyWidget: buildBody(
+                    'Donating clothes is a simple yet impactful way to support those in need and promote Hope.Charity begins at home, but should not end there'),
+                image: buildImage('assets/images/intro3.png'),
+                decoration: getPageDecoration(),
+              ),
+              PageViewModel(
+                titleWidget: buildTitle(
+                  "Let's make the world better with ",
+                  "GiveHope!",
+                  "",
+                ),
+                bodyWidget: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildBody(
+                        'GiveHope is a platform where your generosity meets impact! Join us in making a difference.'),
+                    const SizedBox(height: 20),
+                    buildButton(
+                        text: "Get Started"), // Added Get Started Button
+                  ],
+                ),
+                image: buildImage('assets/images/last2.png'),
+                decoration: getPageDecoration(),
+              ),
+            ],
+            onDone: () {
+              Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
+            },
+            onSkip: () {
+              Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
+            },
+            showSkipButton: false,
+            next: buildButton(icon: Icons.arrow_forward),
+            done: const SizedBox.shrink(), // Hide 'done' button
+            dotsDecorator: getDotsDecorator(),
+          ),
+          // Skip button at top-right corner
+          Positioned(
+            top: 40,
+            right: 20,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(RoutesName.homeScreen);
+              },
+              child: const Text(
+                "Skip",
+                style: TextStyle(
+                    color: AppColor.themeColor,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
             ),
-            decoration: getPageDecoration(),
-          ),
-          PageViewModel(
-            titleWidget: buildTitle('Donation of Clothes'),
-            bodyWidget: buildBody(
-                'Donating clothes is a simple yet impactful way to support those in need and promote sustainability. By giving away gently used items, you can help individuals and families access essential clothing while reducing waste.'),
-            image: Image.asset("assets/images/intro1.png"),
-            decoration: getPageDecoration(),
-          ),
-          PageViewModel(
-            titleWidget: buildTitle('Get Started'),
-            bodyWidget: buildBody('GiveHope is platform where your generosity meets impact! Join us in making a difference by supporting causes that matter most.'),
-            image: buildImage('assets/images/intro4.png'),
-            decoration: getPageDecoration(),
           ),
         ],
-        onDone: () {
-          Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
-        },
-        onSkip: () {
-          Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
-        },
-        showSkipButton: true,
-        skip: const Text(
-          "Skip",
-          style: TextStyle(
-              color: AppColor.themeColor,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.bold),
-        ),
-        next: const Icon(
-          Icons.arrow_forward,
-          color: AppColor.themeColor,
-        ),
-        done: const Text("Get Started",
-            style: TextStyle(
-                color: AppColor.themeColor,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Poppins")),
-        dotsDecorator: getDotsDecorator(),
       ),
     );
   }
 
   Widget buildImage(String path) {
-    return Center(
-      child: Image.asset(path, width: 350),
+    return Padding(
+      padding: const EdgeInsets.only(top: 100), // Adjusted padding
+      child: Center(
+        child: Image.asset(
+          path,
+          width: MediaQuery.of(context).size.width * 0.60,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 
-  Widget buildTitle(String title) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-          fontFamily: "Poppins",
+  Widget buildTitle(String title1, title2, title3) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 16), // Adjust horizontal padding
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(fontSize: 27),
+          children: [
+            TextSpan(
+                text: title1,
+                style: const TextStyle(
+                    color: Colors.black, fontFamily: "Poppins")),
+            TextSpan(
+                text: title2,
+                style: const TextStyle(
+                    color: AppColor.themeColor,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Poppins")),
+            TextSpan(
+                text: title3,
+                style: const TextStyle(
+                    color: Colors.black, fontFamily: "Poppins")),
+          ],
         ),
-        textAlign: TextAlign.left,
+        textAlign: TextAlign.left, // Align text to left
       ),
     );
   }
 
   Widget buildBody(String body) {
-    return Align(
-      alignment: Alignment.topLeft,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         body,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
           fontFamily: "Poppins",
+          color: Colors.grey.shade600,
           height: 1.5,
         ),
         textAlign: TextAlign.left,
@@ -106,8 +156,9 @@ class _IntroScreenState extends State<IntroScreen> {
 
   PageDecoration getPageDecoration() {
     return const PageDecoration(
-      imagePadding: EdgeInsets.all(24),
+      imagePadding: EdgeInsets.all(14),
       titlePadding: EdgeInsets.only(bottom: 5, right: 16, top: 16),
+      bodyPadding: EdgeInsets.only(bottom: 10, right: 16, left: 16),
       pageColor: AppColor.backgroundBodyColor,
     );
   }
@@ -121,6 +172,34 @@ class _IntroScreenState extends State<IntroScreen> {
       activeShape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(25.0)),
       ),
+    );
+  }
+
+  Widget buildButton({String? text, IconData? icon}) {
+    return Container(
+      height: 50,
+      width: text != null
+          ? MediaQuery.of(context).size.width
+          : 70, // Adjusted width based on button type
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        color: AppColor.themeColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: text != null
+          ? Text(
+              text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontFamily: "Poppins",
+              ),
+            )
+          : Icon(
+              icon,
+              color: Colors.white,
+            ),
     );
   }
 }

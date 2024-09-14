@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'app_color.dart';
-
 class DrawerTile extends StatelessWidget {
   const DrawerTile({this.name, this.function, super.key, this.iconIs});
   final String? name;
@@ -13,15 +11,12 @@ class DrawerTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
-        child: Container(
-          color: AppColor.themeTileColor, //
-          child: ListTile(
-            leading: iconIs,
-            title: Text(
-              name ?? "Nothing",
-              style: const TextStyle(
-                fontFamily: "Poppins",
-              ),
+        child: ListTile(
+          leading: iconIs,
+          title: Text(
+            name ?? "Nothing",
+            style: const TextStyle(
+              fontFamily: "Poppins",
             ),
           ),
         ),
