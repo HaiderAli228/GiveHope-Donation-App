@@ -3,6 +3,7 @@ import 'package:donation_app/view/home_view.dart';
 import 'package:donation_app/view/intro_view.dart';
 import 'package:donation_app/view/sign_in.dart';
 import 'package:donation_app/view/payment_view.dart';
+import 'package:donation_app/view/sign_up.dart';
 import 'package:donation_app/view/splash_screen_view.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +26,13 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => const IntroScreen(),
         );
-      case RoutesName.loginScreen:
+      case RoutesName.signinScreen:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const SignInScreen(),
+        );
+      case RoutesName.signUpScreen:
+        return MaterialPageRoute(
+          builder: (context) => const SignUpScreen(),
         );
       default:
         return MaterialPageRoute(

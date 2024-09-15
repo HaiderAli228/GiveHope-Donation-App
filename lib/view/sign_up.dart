@@ -1,24 +1,28 @@
+import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  SignInScreenState createState() => SignInScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class SignInScreenState extends State<SignInScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _userNameController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _userNameController.dispose();
     super.dispose();
   }
 
@@ -36,12 +40,12 @@ class SignInScreenState extends State<SignInScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     child: Text(
-                      "Sign in",
+                      "Sign up",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -53,7 +57,7 @@ class SignInScreenState extends State<SignInScreen> {
                       children: [
                         TextSpan(
                             text:
-                                "Join the movement for change. Sign in to make impact on",
+                                "Ready to take the next step? Create your account to make impact on",
                             style: TextStyle(
                                 color: Colors.black, fontFamily: "Poppins")),
                         TextSpan(
@@ -68,6 +72,15 @@ class SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
+                  SmallWidgets.textIs("Name"),
+                  CustomTextField(
+                      controllerIs: _emailController,
+                      hintTextIs: "Haider Ali",
+                      keyboardApperanceType: TextInputType.emailAddress,
+                      prefixIconIs: Icons.alternate_email),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
                       controllerIs: _emailController,
@@ -80,6 +93,14 @@ class SignInScreenState extends State<SignInScreen> {
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
                       controllerIs: _passwordController,
+                      suffixIconIs: Icons.visibility_off,
+                      prefixIconIs: Icons.lock),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SmallWidgets.textIs("Confirm password"),
+                  CustomTextField(
+                      controllerIs: _confirmPasswordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
                   Row(
@@ -101,7 +122,7 @@ class SignInScreenState extends State<SignInScreen> {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Logging in...')),
+                          const SnackBar(content: Text('Sign iup...')),
                         );
                       }
                     },
@@ -114,7 +135,7 @@ class SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: AppColor.themeColor),
                       child: const Text(
-                        "Login ",
+                        "Sign up ",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           color: AppColor.themeTextColor,
@@ -129,17 +150,17 @@ class SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account ?",
+                        "Already have an account ?",
                         style: TextStyle(
                           color: Colors.grey.shade600,
                         ),
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, RoutesName.signinScreen);
                           },
                           child: const Text(
-                            "Sign up",
+                            "Sign in",
                             style: TextStyle(
                                 color: AppColor.themeColor,
                                 fontFamily: "Poppins"),
