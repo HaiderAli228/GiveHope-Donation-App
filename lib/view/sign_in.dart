@@ -1,0 +1,209 @@
+import 'package:donation_app/utils/app_color.dart';
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  LoginScreenState createState() => LoginScreenState();
+}
+
+class LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColor.backgroundBodyColor,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Poppins"),
+                    ),
+                  ),
+                  RichText(
+                    text: const TextSpan(
+                      children: [
+                        TextSpan(
+                            text:
+                                "Join the movement for change. Sign in to make impact on",
+                            style: TextStyle(
+                                color: Colors.black, fontFamily: "Poppins")),
+                        TextSpan(
+                            text: " GiveHope",
+                            style: TextStyle(
+                                color: AppColor.themeColor,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Poppins")),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
+                    child: Text(
+                      "Email Address",
+                      style: TextStyle(
+                          color: Colors.grey.shade600, fontFamily: "Poppins"),
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: AppColor.lightColor,
+                        hintText: "example@gmail.com",
+                        hintStyle: const TextStyle(
+                            color: Colors.grey, fontFamily: "Poppins"),
+                        prefixIcon: const Icon(
+                          Icons.alternate_email,
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: AppColor.lightColor)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: AppColor.lightColor))),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
+                    child: Text(
+                      "Password",
+                      style: TextStyle(
+                          color: Colors.grey.shade600, fontFamily: "Poppins"),
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _passwordController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: AppColor.lightColor,
+                        suffixIcon: const Icon(
+                          Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: AppColor.lightColor)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: AppColor.lightColor))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Forget password",
+                          style: TextStyle(
+                              color: AppColor.themeColor,
+                              fontFamily: "Poppins"),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  InkWell(
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Logging in...')),
+                        );
+                      }
+                    },
+                    child: Container(
+                      height: 54,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColor.themeColor),
+                      child: const Text(
+                        "Login ",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          color: AppColor.themeTextColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account ?",
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Sign up",
+                            style: TextStyle(
+                                color: AppColor.themeColor,
+                                fontFamily: "Poppins"),
+                          ))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

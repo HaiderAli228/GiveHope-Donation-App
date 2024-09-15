@@ -13,6 +13,8 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,35 +26,41 @@ class _IntroScreenState extends State<IntroScreen> {
                   "Welcome to ",
                   "GiveHope ",
                   "platform",
+                  size,
                 ),
                 bodyWidget: buildBody(
-                    'GiveHope believe that We make a living by what we get, but we make a life by what we give. Believe you can and you are halfway there. – Theodore Roosevelt'),
-                image: buildImage('assets/images/intro2.png'),
-                decoration: getPageDecoration(),
+                    'GiveHope believe that We make a living by what we get, but we make a life by what we give. Believe you can and you are halfway there. – Theodore Roosevelt',
+                    size),
+                image: buildImage('assets/images/intro2.png', size),
+                decoration: getPageDecoration(size),
               ),
               PageViewModel(
                 titleWidget: buildTitle(
                   "Join hands, to make better ",
                   "Hope",
                   "",
+                  size,
                 ),
                 bodyWidget: buildBody(
-                    'Donating clothes is a simple yet impactful way to support those in need and promote Hope.Charity begins at home, but should not end there'),
-                image: buildImage('assets/images/intro3.png'),
-                decoration: getPageDecoration(),
+                    'Donating clothes is a simple yet impactful way to support those in need and promote Hope. Charity begins at home, but should not end there',
+                    size),
+                image: buildImage('assets/images/intro3.png', size),
+                decoration: getPageDecoration(size),
               ),
               PageViewModel(
                 titleWidget: buildTitle(
                   "Let's make the world better with ",
                   "GiveHope!",
                   "",
+                  size,
                 ),
                 bodyWidget: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     buildBody(
-                        'GiveHope is a platform where your generosity meets impact! Join us in making a difference.'),
-                    const SizedBox(height: 40),
+                        'GiveHope is a platform where your generosity meets impact! Join us in making a difference.',
+                        size),
+                    SizedBox(height: size.height * 0.05),
                     // Get Started button with navigation
                     buildButton(
                       text: "Get Started",
@@ -63,8 +71,8 @@ class _IntroScreenState extends State<IntroScreen> {
                     ),
                   ],
                 ),
-                image: buildImage('assets/images/last2.png'),
-                decoration: getPageDecoration(),
+                image: buildImage('assets/images/last2.png', size),
+                decoration: getPageDecoration(size),
               ),
             ],
             onDone: () {
@@ -76,12 +84,12 @@ class _IntroScreenState extends State<IntroScreen> {
             showSkipButton: false,
             next: buildButton(icon: Icons.arrow_forward),
             done: const SizedBox.shrink(), // Hide 'done' button
-            dotsDecorator: getDotsDecorator(),
+            dotsDecorator: getDotsDecorator(size),
           ),
           // Skip button at top-right corner
           Positioned(
-            top: 40,
-            right: 20,
+            top: size.height * 0.05,
+            right: size.width * 0.05,
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context)
@@ -102,26 +110,27 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  Widget buildImage(String path) {
+  Widget buildImage(String path, Size size) {
     return Padding(
-      padding: const EdgeInsets.only(top: 100), // Adjusted padding
+      padding: EdgeInsets.only(top: size.height * 0.1), // Responsive padding
       child: Center(
         child: Image.asset(
           path,
-          width: MediaQuery.of(context).size.width * 0.60,
+          width: size.width * 0.6, // Responsive image size
           fit: BoxFit.cover,
         ),
       ),
     );
   }
 
-  Widget buildTitle(String title1, title2, title3) {
+  Widget buildTitle(String title1, title2, title3, Size size) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 16), // Adjust horizontal padding
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.05), // Responsive padding
       child: RichText(
         text: TextSpan(
-          style: const TextStyle(fontSize: 27),
+          style:
+              TextStyle(fontSize: size.height * 0.035), // Responsive font size
           children: [
             TextSpan(
                 text: title1,
@@ -144,13 +153,14 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  Widget buildBody(String body) {
+  Widget buildBody(String body, Size size) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.01), // Responsive padding
       child: Text(
         body,
         style: TextStyle(
-          fontSize: 18,
+          fontSize: size.height * 0.022, // Responsive font size
           fontFamily: "Poppins",
           color: Colors.grey.shade600,
           height: 1.5,
@@ -160,21 +170,26 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  PageDecoration getPageDecoration() {
-    return const PageDecoration(
-      imagePadding: EdgeInsets.all(14),
-      titlePadding: EdgeInsets.only(bottom: 5, right: 16, top: 16),
-      bodyPadding: EdgeInsets.only(bottom: 10, right: 16, left: 16),
+  PageDecoration getPageDecoration(Size size) {
+    return PageDecoration(
+      imagePadding: EdgeInsets.all(size.height * 0.02), // Responsive padding
+      titlePadding: EdgeInsets.only(
+          left: 0,
+          bottom: size.height * 0.01,
+          right: size.width * 0.04,
+          top: size.height * 0.02),
+      bodyPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       pageColor: AppColor.backgroundBodyColor,
     );
   }
 
-  DotsDecorator getDotsDecorator() {
+  DotsDecorator getDotsDecorator(Size size) {
     return DotsDecorator(
       color: Colors.green.shade100,
       activeColor: AppColor.themeColor,
-      size: const Size(10.0, 10.0),
-      activeSize: const Size(32.0, 10.0),
+      size: Size(size.width * 0.02, size.height * 0.02), // Responsive dot size
+      activeSize: Size(
+          size.width * 0.1, size.height * 0.01), // Responsive active dot size
       activeShape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(25.0)),
       ),
@@ -182,32 +197,35 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   Widget buildButton({String? text, IconData? icon, VoidCallback? onTap}) {
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: onTap, // Added onTap for button actions
       child: Container(
-        height: 50,
+        height: size.height * 0.067,
         width: text != null
-            ? MediaQuery.of(context).size.width
-            : 70, // Adjusted width based on button type
+            ? size.width * 0.9
+            : size.width * 0.18, // Responsive button size
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
         decoration: BoxDecoration(
           color: AppColor.themeColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(size.height * 0.015),
         ),
         child: text != null
             ? Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontFamily: "Poppins",
-          ),
-        )
+                text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "Poppins",
+                  fontSize: size.height * 0.02, // Responsive font size
+                ),
+              )
             : Icon(
-          icon,
-          color: Colors.white,
-        ),
+                icon,
+                color: Colors.white,
+                size: size.height * 0.03, // Responsive icon size
+              ),
       ),
     );
   }
