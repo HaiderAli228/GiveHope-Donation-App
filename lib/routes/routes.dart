@@ -1,9 +1,11 @@
 import 'package:donation_app/routes/routes_name.dart';
+import 'package:donation_app/view/forget_password_view.dart';
 import 'package:donation_app/view/home_view.dart';
 import 'package:donation_app/view/intro_view.dart';
-import 'package:donation_app/view/sign_in.dart';
+import 'package:donation_app/view/phone_number_view.dart';
+import 'package:donation_app/view/sign_in_view.dart';
 import 'package:donation_app/view/payment_view.dart';
-import 'package:donation_app/view/sign_up.dart';
+import 'package:donation_app/view/sign_up_view.dart';
 import 'package:donation_app/view/splash_screen_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,14 @@ class Routes {
       case RoutesName.homeScreen:
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
+        );
+      case RoutesName.forgetScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ForgetPasswordScreen(),
+        );
+      case RoutesName.mobileNumberScreen:
+        return MaterialPageRoute(
+          builder: (context) => const VerificationScreen(),
         );
       case RoutesName.splashScreen:
         return MaterialPageRoute(

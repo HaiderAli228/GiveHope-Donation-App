@@ -1,3 +1,4 @@
+import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
@@ -86,7 +87,9 @@ class SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, RoutesName.forgetScreen);
+                        },
                         child: const Text(
                           "Forget password",
                           style: TextStyle(
@@ -100,9 +103,7 @@ class SignInScreenState extends State<SignInScreen> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Logging in...')),
-                        );
+                       Navigator.pushReplacementNamed(context, RoutesName.homeScreen);
                       }
                     },
                     child: Container(
@@ -114,7 +115,7 @@ class SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: AppColor.themeColor),
                       child: const Text(
-                        "Login ",
+                        "Sign in",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           color: AppColor.themeTextColor,

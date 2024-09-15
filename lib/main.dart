@@ -1,5 +1,6 @@
 import 'package:donation_app/routes/routes.dart';
 import 'package:donation_app/routes/routes_name.dart';
+import 'package:donation_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.themeColor),
         useMaterial3: true,
       ),
-      initialRoute: RoutesName.signUpScreen,
+      initialRoute: RoutesName.mobileNumberScreen,
       onGenerateRoute: Routes.generatedRoutes,
     );
   }

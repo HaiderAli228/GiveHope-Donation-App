@@ -103,27 +103,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                       controllerIs: _confirmPasswordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Forget password",
-                          style: TextStyle(
-                              color: AppColor.themeColor,
-                              fontFamily: "Poppins"),
-                        ),
-                      )
-                    ],
-                  ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sign iup...')),
-                        );
+                       Navigator.pushReplacementNamed(context, RoutesName.homeScreen);
                       }
                     },
                     child: Container(

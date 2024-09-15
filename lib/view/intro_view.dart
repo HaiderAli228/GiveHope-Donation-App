@@ -76,10 +76,12 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ],
             onDone: () {
-              Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
+              Navigator.of(context)
+                  .pushReplacementNamed(RoutesName.signUpScreen);
             },
             onSkip: () {
-              Navigator.of(context).pushReplacementNamed(RoutesName.homeScreen);
+              Navigator.of(context)
+                  .pushReplacementNamed(RoutesName.signUpScreen);
             },
             showSkipButton: false,
             next: buildButton(icon: Icons.arrow_forward),
