@@ -1,4 +1,6 @@
 import 'package:donation_app/utils/app_color.dart';
+import 'package:donation_app/utils/small_widgets.dart';
+import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,76 +68,20 @@ class LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
-                    child: Text(
-                      "Email Address",
-                      style: TextStyle(
-                          color: Colors.grey.shade600, fontFamily: "Poppins"),
-                    ),
-                  ),
-                  TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: AppColor.lightColor,
-                        hintText: "example@gmail.com",
-                        hintStyle: const TextStyle(
-                            color: Colors.grey, fontFamily: "Poppins"),
-                        prefixIcon: const Icon(
-                          Icons.alternate_email,
-                          color: Colors.grey,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide(color: AppColor.lightColor)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            borderSide:
-                                BorderSide(color: AppColor.lightColor))),
-                  ),
+                  SmallWidgets.textIs("Email Address"),
+                  CustomTextField(
+                      controllerIs: _emailController,
+                      hintTextIs: "example@gmail.com",
+                      keyboardApperanceType: TextInputType.emailAddress,
+                      prefixIconIs: Icons.alternate_email),
                   const SizedBox(
                     height: 15,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
-                    child: Text(
-                      "Password",
-                      style: TextStyle(
-                          color: Colors.grey.shade600, fontFamily: "Poppins"),
-                    ),
-                  ),
-                  TextFormField(
-                    controller: _passwordController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: AppColor.lightColor,
-                        suffixIcon: const Icon(
-                          Icons.visibility_off,
-                          color: Colors.grey,
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Colors.grey,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide(color: AppColor.lightColor)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            borderSide:
-                                BorderSide(color: AppColor.lightColor))),
-                  ),
+                  SmallWidgets.textIs("Password"),
+                  CustomTextField(
+                      controllerIs: _passwordController,
+                      suffixIconIs: Icons.visibility_off,
+                      prefixIconIs: Icons.lock),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
