@@ -78,8 +78,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                       hintTextIs: "Haider Ali",
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.013,
                   ),
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
@@ -87,16 +87,16 @@ class SignUpScreenState extends State<SignUpScreen> {
                       hintTextIs: "example@gmail.com",
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.013,
                   ),
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
                       controllerIs: _passwordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.013,
                   ),
                   SmallWidgets.textIs("Confirm password"),
                   CustomTextField(
@@ -107,7 +107,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                       Navigator.pushReplacementNamed(context, RoutesName.homeScreen);
+                        Navigator.pushReplacementNamed(
+                            context, RoutesName.homeScreen);
                       }
                     },
                     child: Container(
@@ -141,7 +142,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, RoutesName.signinScreen);
+                            Navigator.pushNamed(
+                                context, RoutesName.signinScreen);
                           },
                           child: const Text(
                             "Sign in",

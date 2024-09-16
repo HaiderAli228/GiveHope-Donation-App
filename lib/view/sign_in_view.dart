@@ -36,6 +36,20 @@ class SignInScreenState extends State<SignInScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  GestureDetector(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: AppColor.themeColor
+                            .withOpacity(0.1), // Light shade of themeColor
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(Icons.arrow_back,
+                          color: AppColor.themeColor),
+                    ),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
@@ -103,7 +117,8 @@ class SignInScreenState extends State<SignInScreen> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                       Navigator.pushReplacementNamed(context, RoutesName.homeScreen);
+                        Navigator.pushReplacementNamed(
+                            context, RoutesName.homeScreen);
                       }
                     },
                     child: Container(

@@ -13,13 +13,13 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   Timer(const Duration(seconds: 4), () {
-  //     Navigator.pushNamed(context, RoutesName.introScreen);
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushNamed(context, RoutesName.introScreen);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
               height: 20,
             ),
             Lottie.asset("assets/images/donation_intro.json",
-                // repeat: false,
+                repeat: false,
                 alignment: Alignment.center,
                 fit: BoxFit.cover),
             const Padding(

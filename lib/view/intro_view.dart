@@ -66,7 +66,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       text: "Get Started",
                       onTap: () {
                         Navigator.of(context)
-                            .pushReplacementNamed(RoutesName.homeScreen);
+                            .pushReplacementNamed(RoutesName.signUpScreen);
                       },
                     ),
                   ],
@@ -95,7 +95,7 @@ class _IntroScreenState extends State<IntroScreen> {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context)
-                    .pushReplacementNamed(RoutesName.homeScreen);
+                    .pushReplacementNamed(RoutesName.signUpScreen);
               },
               child: const Text(
                 "Skip",
