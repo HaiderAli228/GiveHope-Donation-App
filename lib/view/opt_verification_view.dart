@@ -3,6 +3,8 @@ import 'package:donation_app/utils/small_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../routes/routes_name.dart';
+
 class OPTVerificationScreen extends StatefulWidget {
   const OPTVerificationScreen({super.key});
 
@@ -100,7 +102,9 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                   height: MediaQuery.of(context).size.height * 0.055,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                      Navigator.pushNamed(context, RoutesName.newPasswordScreen);
+                  },
                   child: Container(
                     height: 54,
                     width: double.infinity,

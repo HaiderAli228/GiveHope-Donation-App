@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.themeColor),
         useMaterial3: true,
       ),
-      initialRoute: RoutesName.optVerificationScreen,
+      initialRoute: RoutesName.newPasswordScreen,
       onGenerateRoute: Routes.generatedRoutes,
     );
   }

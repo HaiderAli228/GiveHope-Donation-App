@@ -1,3 +1,4 @@
+import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
@@ -88,7 +89,11 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                     height: MediaQuery.of(context).size.height * 0.055,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if(_formKey.currentState!.validate()){
+                        Navigator.pushNamed(context, RoutesName.optVerificationScreen);
+                      }
+                    },
                     child: Container(
                       height: 54,
                       width: double.infinity,

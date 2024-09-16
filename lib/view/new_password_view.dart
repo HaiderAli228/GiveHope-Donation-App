@@ -4,20 +4,22 @@ import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class NewPasswordScreen extends StatefulWidget {
+  const NewPasswordScreen({super.key});
 
   @override
-  ForgetPasswordScreenState createState() => ForgetPasswordScreenState();
+  NewPasswordScreenState createState() => NewPasswordScreenState();
 }
 
-class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+class NewPasswordScreenState extends State<NewPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _cNewPasswordController = TextEditingController();
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _newPasswordController.dispose();
+    _cNewPasswordController.dispose();
     super.dispose();
   }
 
@@ -42,7 +44,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           backgroundColor: AppColor.themeColor,
                           minRadius: MediaQuery.of(context).size.height * 0.1,
                           child: Icon(
-                            Icons.lock_rounded,
+                            Icons.lock_clock_rounded,
                             color: Colors.white,
                             size: MediaQuery.of(context).size.height * 0.12,
                           ))),
@@ -52,7 +54,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     child: Text(
-                      "Forget password",
+                      "Create password",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -63,8 +65,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                            text:
-                                "You forget your password ? don't worry cover your password with",
+                            text: "Create your new password to secure your ",
                             style: TextStyle(
                                 color: Colors.black, fontFamily: "Poppins")),
                         TextSpan(
@@ -73,26 +74,41 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 color: AppColor.themeColor,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Poppins")),
+                        TextSpan(
+                            text: " account.",
+                            style: TextStyle(
+                                color: Colors.black, fontFamily: "Poppins")),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.035,
                   ),
-                  SmallWidgets.textIs("Email Address"),
+                  SmallWidgets.textIs("New Password"),
                   CustomTextField(
-                      controllerIs: _emailController,
-                      hintTextIs: "example@gmail.com",
-                      keyboardApperanceType: TextInputType.emailAddress,
-                      prefixIconIs: Icons.alternate_email),
+                      suffixIconIs: Icons.visibility_off,
+                      controllerIs: _newPasswordController,
+                      hintTextIs: "new password",
+                      keyboardApperanceType: TextInputType.number,
+                      prefixIconIs: Icons.lock_rounded),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.015,
+                  ),
+                  SmallWidgets.textIs("Confirm New Password"),
+                  CustomTextField(
+                      controllerIs: _cNewPasswordController,
+                      hintTextIs: "confirm new password",
+                      suffixIconIs: Icons.visibility_off,
+                      keyboardApperanceType: TextInputType.number,
+                      prefixIconIs: Icons.lock_rounded),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.055,
                   ),
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(
-                            context, RoutesName.optVerificationScreen);
+                        Navigator.pushReplacementNamed(
+                            context, RoutesName.signinScreen);
                       }
                     },
                     child: Container(
@@ -104,7 +120,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: AppColor.themeColor),
                       child: const Text(
-                        "Next",
+                        "Create new password",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           color: AppColor.themeTextColor,
@@ -114,20 +130,6 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                  Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, RoutesName.mobileNumberScreen);
-                        },
-                        child: const Text(
-                          "Try another way",
-                          style: TextStyle(
-                              color: AppColor.themeColor,
-                              fontFamily: "Poppins"),
-                        )),
-                  )
                 ],
               ),
             ),

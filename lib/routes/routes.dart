@@ -2,6 +2,7 @@ import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/view/forget_password_view.dart';
 import 'package:donation_app/view/home_view.dart';
 import 'package:donation_app/view/intro_view.dart';
+import 'package:donation_app/view/new_password_view.dart';
 import 'package:donation_app/view/opt_verification_view.dart';
 import 'package:donation_app/view/phone_number_view.dart';
 import 'package:donation_app/view/sign_in_view.dart';
@@ -16,6 +17,10 @@ class Routes {
       case RoutesName.homeScreen:
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
+        );
+      case RoutesName.newPasswordScreen:
+        return MaterialPageRoute(
+          builder: (context) => const NewPasswordScreen(),
         );
       case RoutesName.optVerificationScreen:
         return MaterialPageRoute(
