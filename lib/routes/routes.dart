@@ -2,6 +2,7 @@ import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/view/forget_password_view.dart';
 import 'package:donation_app/view/home_view.dart';
 import 'package:donation_app/view/intro_view.dart';
+import 'package:donation_app/view/opt_verification_view.dart';
 import 'package:donation_app/view/phone_number_view.dart';
 import 'package:donation_app/view/sign_in_view.dart';
 import 'package:donation_app/view/payment_view.dart';
@@ -16,13 +17,17 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
         );
+      case RoutesName.optVerificationScreen:
+        return MaterialPageRoute(
+          builder: (context) => const OPTVerificationScreen(),
+        );
       case RoutesName.forgetScreen:
         return MaterialPageRoute(
           builder: (context) => const ForgetPasswordScreen(),
         );
       case RoutesName.mobileNumberScreen:
         return MaterialPageRoute(
-          builder: (context) => const VerificationScreen(),
+          builder: (context) => const PhoneNumberScreen(),
         );
       case RoutesName.splashScreen:
         return MaterialPageRoute(

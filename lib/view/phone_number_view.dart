@@ -3,14 +3,14 @@ import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
-class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({super.key});
+class PhoneNumberScreen extends StatefulWidget {
+  const PhoneNumberScreen({super.key});
 
   @override
-  VerificationScreenState createState() => VerificationScreenState();
+  PhoneNumberScreenState createState() => PhoneNumberScreenState();
 }
 
-class VerificationScreenState extends State<VerificationScreen> {
+class PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final _formKey = GlobalKey<FormState>();
   final _mobileNumController = TextEditingController();
 
