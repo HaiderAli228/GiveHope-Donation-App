@@ -84,6 +84,7 @@ class HomeView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
@@ -162,6 +163,97 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6),
+                  child: Text(
+                    "Urgent Causes",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: const Image(
+                          image: AssetImage(
+                            "assets/images/start.jpg",
+                          ),
+                          height: 200,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          "Donate for hungry people",
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Stack(
+                        children: [
+                          // Empty part (full background)
+                          Container(
+                            height: 10.0,
+                            decoration: BoxDecoration(
+                              color: Colors.grey
+                                  .shade300, // Empty part (grey background)
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          // Filled part (half-filled with theme color)
+                          FractionallySizedBox(
+                            widthFactor: 0.5, // Half-filled
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              height: 10.0,
+                              decoration: BoxDecoration(
+                                color: AppColor.themeColor, // Filled part
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Target : Rs.50000 ",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "50%",
+                              style: TextStyle(
+                                  color: AppColor.themeColor,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
