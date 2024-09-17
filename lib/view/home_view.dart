@@ -1,6 +1,8 @@
+import 'package:donation_app/utils/achievement_picture.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/drawer_tile.dart';
 import 'package:donation_app/utils/picture_frame.dart';
+import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -174,17 +176,7 @@ class HomeView extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 6),
-                  child: Text(
-                    "Urgent Causes",
-                    style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
+                SmallWidgets.heading("Urgent Causes"),
                 const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -219,6 +211,52 @@ class HomeView extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+                SmallWidgets.heading("Our Achievements"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: const AchievementPictureFrame(
+                        imagesIs: "assets/images/intro1.png",
+                        titleText: "50+",
+                        subTitleText: "Donation",
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: const AchievementPictureFrame(
+                        imagesIs: "assets/images/intro2.png",
+                        titleText: "70+",
+                        subTitleText: "Volunteer",
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: const AchievementPictureFrame(
+                        imagesIs: "assets/images/intro3.png",
+                        titleText: "50+",
+                        subTitleText: "Smile Served",
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: const AchievementPictureFrame(
+                        imagesIs: "assets/images/intro4.png",
+                        titleText: "50+",
+                        subTitleText: "NGO'S",
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),

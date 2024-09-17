@@ -20,7 +20,7 @@ class PictureFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
-      margin: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
+      margin: const EdgeInsets.only(bottom: 5, right: 10),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
           color: Colors.grey.shade100, borderRadius: BorderRadius.circular(10)),

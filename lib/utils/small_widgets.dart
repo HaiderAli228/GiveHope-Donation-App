@@ -10,4 +10,18 @@ class SmallWidgets {
       ),
     );
   }
+
+  static Widget heading(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 2),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontFamily: "Poppins",
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
 }
