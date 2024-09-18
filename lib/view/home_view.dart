@@ -257,6 +257,18 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SmallWidgets.heading("Our Services"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SmallWidgets.servicesSection(
+                        context, "Supports", Icons.account_box_rounded),
+                    SmallWidgets.servicesSection(
+                        context, "Supports", Icons.question_answer_outlined),
+                    SmallWidgets.servicesSection(
+                        context, "Supports", Icons.support)
+                  ],
                 )
               ],
             ),
