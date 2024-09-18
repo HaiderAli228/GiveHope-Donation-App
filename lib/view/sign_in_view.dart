@@ -37,6 +37,10 @@ class SignInScreenState extends State<SignInScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RoutesName.signUpScreen);
+                    },
                     child: Container(
                       height: 50,
                       width: 50,

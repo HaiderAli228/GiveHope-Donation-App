@@ -60,7 +60,8 @@ class SmallWidgets {
       ],
     );
   }
-  static Widget listTileIs(String titleText,String subTitle , IconData dataIs) {
+
+  static Widget listTileIs(String titleText, String subTitle, IconData dataIs) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,7 @@ class SmallWidgets {
             borderRadius: BorderRadius.circular(6),
             color: AppColor.lightColor,
           ),
-          child:  Icon(
+          child: Icon(
             dataIs,
             color: AppColor.themeColor,
             size: 50,
@@ -103,7 +104,8 @@ class SmallWidgets {
                     fontWeight: FontWeight.bold,
                   ),
                   softWrap: true, // Ensure the text will wrap
-                  overflow: TextOverflow.visible, // Allow the text to wrap visibly
+                  overflow:
+                      TextOverflow.visible, // Allow the text to wrap visibly
                 ),
               ],
             ),
@@ -113,4 +115,15 @@ class SmallWidgets {
     );
   }
 
+  static Widget circularIcon(context,IconData data) {
+    return Center(
+        child: CircleAvatar(
+            backgroundColor: AppColor.themeColor,
+            minRadius: MediaQuery.of(context).size.height * 0.1,
+            child: Icon(
+              data,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.height * 0.12,
+            )));
+  }
 }

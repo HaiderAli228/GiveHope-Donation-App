@@ -37,15 +37,7 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  Center(
-                      child: CircleAvatar(
-                          backgroundColor: AppColor.themeColor,
-                          minRadius: MediaQuery.of(context).size.height * 0.1,
-                          child: Icon(
-                            Icons.lock,
-                            color: Colors.white,
-                            size: MediaQuery.of(context).size.height * 0.12,
-                          ))),
+                  SmallWidgets.circularIcon(context, Icons.lock),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
@@ -90,8 +82,9 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      if(_formKey.currentState!.validate()){
-                        Navigator.pushNamed(context, RoutesName.optVerificationScreen);
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushNamed(
+                            context, RoutesName.optVerificationScreen);
                       }
                     },
                     child: Container(

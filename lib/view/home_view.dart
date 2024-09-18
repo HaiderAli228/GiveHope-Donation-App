@@ -1,5 +1,6 @@
 import 'package:donation_app/utils/achievement_picture.dart';
 import 'package:donation_app/utils/app_color.dart';
+import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/drawer_tile.dart';
 import 'package:donation_app/utils/picture_frame.dart';
 import 'package:donation_app/utils/small_widgets.dart';
@@ -285,22 +286,9 @@ class HomeView extends StatelessWidget {
                     "Contribute Food",
                     "The text will wrap to the next line without causing overflow errors.",
                     Icons.fastfood_rounded),
-                Container(
-                  height: 60,
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(vertical: 30),
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: AppColor.themeColor,
-                    borderRadius: BorderRadius.circular(6)
-                  ),
-                  child: const Text("Donate now",style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18
-                  ),),
+                RoundButton(
+                  buttonText: "Donate now",
+                  onPressed: () {},
                 )
               ],
             ),

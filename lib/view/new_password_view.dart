@@ -1,5 +1,6 @@
 import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
+import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
@@ -39,15 +40,7 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  Center(
-                      child: CircleAvatar(
-                          backgroundColor: AppColor.themeColor,
-                          minRadius: MediaQuery.of(context).size.height * 0.1,
-                          child: Icon(
-                            Icons.lock_clock_rounded,
-                            color: Colors.white,
-                            size: MediaQuery.of(context).size.height * 0.12,
-                          ))),
+                  SmallWidgets.circularIcon(context, Icons.lock_clock_rounded),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
@@ -104,32 +97,14 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.055,
                   ),
-                  InkWell(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacementNamed(
-                            context, RoutesName.signinScreen);
-                      }
-                    },
-                    child: Container(
-                      height: 54,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColor.themeColor),
-                      child: const Text(
-                        "Create new password",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          color: AppColor.themeTextColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                        ),
-                      ),
-                    ),
-                  ),
+                  RoundButton(
+                      buttonText: "Create new password",
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pushReplacementNamed(
+                              context, RoutesName.signinScreen);
+                        }
+                      })
                 ],
               ),
             ),
