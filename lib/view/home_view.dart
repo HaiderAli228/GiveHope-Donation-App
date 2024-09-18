@@ -269,6 +269,38 @@ class HomeView extends StatelessWidget {
                     SmallWidgets.servicesSection(
                         context, "Supports", Icons.support)
                   ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SmallWidgets.heading("How can we help ?"),
+                SmallWidgets.listTileIs(
+                    "Volunteer",
+                    "the text will wrap to the next line without causing overflow errors.",
+                    Icons.volunteer_activism_rounded),
+                const SizedBox(
+                  height: 20,
+                ),
+                SmallWidgets.listTileIs(
+                    "Contribute Food",
+                    "The text will wrap to the next line without causing overflow errors.",
+                    Icons.fastfood_rounded),
+                Container(
+                  height: 60,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 30),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: AppColor.themeColor,
+                    borderRadius: BorderRadius.circular(6)
+                  ),
+                  child: const Text("Donate now",style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18
+                  ),),
                 )
               ],
             ),
