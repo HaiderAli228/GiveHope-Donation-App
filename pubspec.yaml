@@ -45,6 +45,8 @@ dependencies:
   fl_chart: ^0.69.0
   introduction_screen: ^3.1.14
   pin_code_fields: ^8.0.1
+  fancy_popups_new: ^0.0.6
+  flutter_stripe: ^11.1.0
 
 dev_dependencies:
   flutter_test:
