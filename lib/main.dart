@@ -2,9 +2,16 @@ import 'package:donation_app/routes/routes.dart';
 import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
-void main() {
+void main() async {
+  await _setup();
   runApp(const MyApp());
+}
+
+Future<void> _setup() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = " ";
 }
 
 class MyApp extends StatelessWidget {

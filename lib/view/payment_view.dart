@@ -5,6 +5,7 @@ import '../routes/routes_name.dart';
 import '../utils/app_color.dart';
 import '../utils/small_widgets.dart';
 import '../utils/text_field.dart';
+import '../view_model/stripe_services.dart';
 
 class PaymentView extends StatefulWidget {
   const PaymentView({super.key});
@@ -90,8 +91,10 @@ class _PaymentViewState extends State<PaymentView> {
                 keyboardApperanceType: TextInputType.emailAddress,
                 prefixIconIs: Icons.attach_money_rounded),
             RoundButton(
-              buttonText: "Next",
-              onPressed: () {},
+              buttonText: "Donate",
+              onPressed: () {
+                StripeService.instance.makePayment();
+              },
             )
           ],
         ),
