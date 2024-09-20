@@ -1,6 +1,7 @@
 import 'package:donation_app/routes/routes.dart';
 import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/app_color.dart';
+import 'package:donation_app/view_model/links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -11,7 +12,7 @@ void main() async {
 
 Future<void> _setup() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey = " ";
+  Stripe.publishableKey = stripePublishableKey;
 }
 
 class MyApp extends StatelessWidget {
