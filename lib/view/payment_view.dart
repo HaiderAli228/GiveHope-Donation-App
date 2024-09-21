@@ -16,6 +16,7 @@ class PaymentView extends StatefulWidget {
 
 class _PaymentViewState extends State<PaymentView> {
   TextEditingController amountController = TextEditingController();
+  final FocusNode amountFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,8 @@ class _PaymentViewState extends State<PaymentView> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: const EdgeInsets.all(8),
-                  child: const Icon(Icons.arrow_back, color: AppColor.themeColor),
+                  child:
+                      const Icon(Icons.arrow_back, color: AppColor.themeColor),
                 ),
               ),
               SizedBox(
@@ -89,12 +91,15 @@ class _PaymentViewState extends State<PaymentView> {
               CustomTextField(
                   controllerIs: amountController,
                   hintTextIs: "Rs.3000",
-                  keyboardApperanceType: TextInputType.emailAddress,
+                  focusNode: amountFocusNode,
+                  keyboardApperanceType: TextInputType.number,
                   prefixIconIs: Icons.attach_money_rounded),
               RoundButton(
-                buttonText: "Donate",
+                buttonText: "Next",
                 onPressed: () {
-                  StripeService.instance.makePayment();
+                  StripeService.instance
+                      .makePayment(int.parse(amountController.text));
+                  amountController.clear();
                 },
               )
             ],

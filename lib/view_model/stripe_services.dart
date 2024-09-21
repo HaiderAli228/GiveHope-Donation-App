@@ -1,5 +1,5 @@
-
 import 'package:dio/dio.dart';
+import 'package:donation_app/utils/dialog_box.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'links.dart';
@@ -9,10 +9,10 @@ class StripeService {
 
   static final StripeService instance = StripeService._();
 
-  Future<void> makePayment() async {
+  Future<void> makePayment(int amount) async {
     try {
       String? paymentIntentClientSecret = await _createPaymentIntent(
-        100,
+        amount,
         "usd",
       );
       if (paymentIntentClientSecret == null) return;
@@ -53,7 +53,7 @@ class StripeService {
       }
       return null;
     } catch (e) {
-      print(e);
+      DialogBox.errorDialogBox(e);
     }
     return null;
   }
@@ -63,7 +63,7 @@ class StripeService {
       await Stripe.instance.presentPaymentSheet();
       await Stripe.instance.confirmPaymentSheetPayment();
     } catch (e) {
-      print(e);
+      DialogBox.errorDialogBox(e);
     }
   }
 
