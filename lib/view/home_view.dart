@@ -172,6 +172,8 @@ class HomeView extends StatelessWidget {
                 ),
                 CustomTextField(
                     controllerIs: TextEditingController(),
+                    keyboardApperanceType: TextInputType.text,
+                    focusNode: FocusNode(),
                     hintTextIs: "Type to search here",
                     prefixIconIs: Icons.search),
                 const SizedBox(

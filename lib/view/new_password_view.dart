@@ -16,6 +16,8 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final _newPasswordController = TextEditingController();
   final _cNewPasswordController = TextEditingController();
+  final FocusNode newPasswordFocusNode = FocusNode();
+  final FocusNode cNewPasswordFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -79,6 +81,8 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   SmallWidgets.textIs("New Password"),
                   CustomTextField(
+                      focusNode: newPasswordFocusNode,
+                      nextFocusNode: cNewPasswordFocusNode,
                       suffixIconIs: Icons.visibility_off,
                       controllerIs: _newPasswordController,
                       hintTextIs: "new password",
@@ -89,6 +93,7 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   SmallWidgets.textIs("Confirm New Password"),
                   CustomTextField(
+                      focusNode: cNewPasswordFocusNode,
                       controllerIs: _cNewPasswordController,
                       hintTextIs: "confirm new password",
                       suffixIconIs: Icons.visibility_off,

@@ -14,6 +14,7 @@ class PhoneNumberScreen extends StatefulWidget {
 class PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final _formKey = GlobalKey<FormState>();
   final _mobileNumController = TextEditingController();
+  final _mobileNumFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -73,6 +74,7 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   ),
                   SmallWidgets.textIs("Phone Number"),
                   CustomTextField(
+                      focusNode: _mobileNumFocusNode,
                       controllerIs: _mobileNumController,
                       hintTextIs: "+92-300-0000000",
                       keyboardApperanceType: TextInputType.number,

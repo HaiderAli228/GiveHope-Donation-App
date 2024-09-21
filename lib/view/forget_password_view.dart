@@ -15,7 +15,7 @@ class ForgetPasswordScreen extends StatefulWidget {
 class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-
+  final FocusNode _emailFocusNode = FocusNode();
   @override
   void dispose() {
     _emailController.dispose();
@@ -74,6 +74,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
+                      focusNode: _emailFocusNode,
                       controllerIs: _emailController,
                       hintTextIs: "example@gmail.com",
                       keyboardApperanceType: TextInputType.emailAddress,

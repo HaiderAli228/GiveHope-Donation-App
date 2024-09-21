@@ -17,7 +17,10 @@ class SignUpScreenState extends State<SignUpScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _userNameController = TextEditingController();
-
+  final _emailFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+  final _confirmPasswordFocusNode = FocusNode();
+  final _userNameFocusNode = FocusNode();
   @override
   void dispose() {
     _emailController.dispose();
@@ -74,9 +77,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Name"),
                   CustomTextField(
-                      controllerIs: _emailController,
+                      controllerIs: _userNameController,
+                      focusNode: _userNameFocusNode,
+                      nextFocusNode: _emailFocusNode,
                       hintTextIs: "Haider Ali",
-                      keyboardApperanceType: TextInputType.emailAddress,
+                      keyboardApperanceType: TextInputType.text,
                       prefixIconIs: Icons.alternate_email),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.013,
@@ -84,6 +89,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
                       controllerIs: _emailController,
+                      focusNode: _emailFocusNode,
+                      nextFocusNode: _passwordFocusNode,
                       hintTextIs: "example@gmail.com",
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
@@ -92,6 +99,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
+                      focusNode: _passwordFocusNode,
+                      keyboardApperanceType: TextInputType.emailAddress,
+                      nextFocusNode: _confirmPasswordFocusNode,
                       controllerIs: _passwordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
@@ -100,6 +110,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Confirm password"),
                   CustomTextField(
+                      keyboardApperanceType: TextInputType.emailAddress,
+                      focusNode: _confirmPasswordFocusNode,
                       controllerIs: _confirmPasswordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),

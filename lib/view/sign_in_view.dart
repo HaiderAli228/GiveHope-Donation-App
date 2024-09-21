@@ -15,6 +15,8 @@ class SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _emailFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -90,6 +92,8 @@ class SignInScreenState extends State<SignInScreen> {
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
                       controllerIs: _emailController,
+                      focusNode: _emailFocusNode,
+                      nextFocusNode: _passwordFocusNode,
                       hintTextIs: "example@gmail.com",
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
@@ -98,6 +102,8 @@ class SignInScreenState extends State<SignInScreen> {
                   ),
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
+                      focusNode: _emailFocusNode,
+                      keyboardApperanceType: TextInputType.emailAddress,
                       controllerIs: _passwordController,
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
