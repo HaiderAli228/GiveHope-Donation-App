@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
-  await _setup();
+  WidgetsFlutterBinding.ensureInitialized();
+  await _setupStripe();
   runApp(const MyApp());
 }
 
-Future<void> _setup() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> _setupStripe() async {
   Stripe.publishableKey = stripePublishableKey;
 }
 

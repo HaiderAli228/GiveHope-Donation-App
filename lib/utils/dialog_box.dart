@@ -3,7 +3,7 @@ import 'package:fancy_popups_new/fancy_popups_new.dart';
 import 'package:flutter/material.dart';
 
 class DialogBox {
-  static errorDialogBox(context, var text) {
+  static errorDialogBox(context, var bodyText, var headingText) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -18,19 +18,19 @@ class DialogBox {
               buttonColor: AppColor.themeColor,
               buttonStyle: const TextStyle(
                   fontFamily: "Poppins", fontWeight: FontWeight.bold),
-              heading: "Error!",
-              body: text,
+              heading: headingText,
+              body: bodyText,
               onClose: () {
                 Navigator.pop(context);
               },
-              type: Type.error,
+              type: Type.warning,
               buttonRadius: 8,
               dialogRadius: 20,
               buttonText: "Go Back");
         });
   }
 
-  static successDialogBox(context, var text) {
+  static successDialogBox(context, var bodyText, var headingText) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -45,8 +45,8 @@ class DialogBox {
               buttonColor: AppColor.themeColor,
               buttonStyle: const TextStyle(
                   fontFamily: "Poppins", fontWeight: FontWeight.bold),
-              heading: "Congratulation",
-              body: text,
+              heading: headingText,
+              body: bodyText,
               onClose: () {
                 Navigator.pop(context);
               },
