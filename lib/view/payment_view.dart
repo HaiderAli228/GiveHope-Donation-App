@@ -1,4 +1,5 @@
 import 'package:donation_app/utils/button.dart';
+import 'package:donation_app/utils/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 import '../routes/routes_name.dart';
@@ -17,16 +18,6 @@ class PaymentView extends StatefulWidget {
 class _PaymentViewState extends State<PaymentView> {
   TextEditingController amountController = TextEditingController();
   final FocusNode amountFocusNode = FocusNode();
-
-  // Add a loading state variable
-  bool isLoading = false;
-
-  void handleBottomSheetDismissal() {
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,30 +102,16 @@ class _PaymentViewState extends State<PaymentView> {
                       buttonText: "Next",
                       onPressed: () async {
                         if (amountController.text.isEmpty) {
-                          // Check if the amount is not empty
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Please enter an amount")),
-                          );
+                         DialogBox.errorDialogBox(context , "Please enter amount") ;
                           return;
-                        }
-                        setState(() {
-                          isLoading = true;
-                        });
-                        try {
+                        } else {
+                          print("Before the Stripe");
                           await StripeService.instance
                               .makePayment(int.parse(amountController.text));
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(e.toString())),
-                          );
-                        } finally {
-                          setState(() {
-                            isLoading = false;
-                          });
-                        }
+                          print("after the Stripe");
+                          amountController.clear();
 
-                        amountController.clear();
+                        }
                       },
                     ),
                   ],
@@ -143,13 +120,6 @@ class _PaymentViewState extends State<PaymentView> {
             ),
           ),
           // Show CircularProgressIndicator when isLoading is true
-          if (isLoading)
-            Container(
-              color: Colors.black.withOpacity(0.5),
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
         ],
       ),
     );

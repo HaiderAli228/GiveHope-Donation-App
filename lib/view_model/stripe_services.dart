@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:donation_app/utils/dialog_box.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'links.dart';
@@ -19,7 +18,7 @@ class StripeService {
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           paymentIntentClientSecret: paymentIntentClientSecret,
-          merchantDisplayName: "Hussain Mustafa",
+          merchantDisplayName: "Haider Ali",
         ),
       );
       await _processPayment();
@@ -53,7 +52,7 @@ class StripeService {
       }
       return null;
     } catch (e) {
-      DialogBox.errorDialogBox(e);
+      print(e);
     }
     return null;
   }
@@ -63,7 +62,7 @@ class StripeService {
       await Stripe.instance.presentPaymentSheet();
       await Stripe.instance.confirmPaymentSheetPayment();
     } catch (e) {
-      DialogBox.errorDialogBox(e);
+     print(e);
     }
   }
 
