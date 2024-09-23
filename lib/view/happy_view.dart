@@ -25,8 +25,10 @@ class _HappyViewState extends State<HappyView> {
             children: [
               Stack(
                 children: [
-                  Lottie.asset("assets/images/lock.json", repeat:false),
-                  Lottie.asset("assets/images/happy.json"),
+                  Lottie.asset("assets/images/lock.json",
+                      alignment: Alignment.center,
+                      repeat:false),
+                  Lottie.asset("assets/images/happy.json",repeat:false),
                 ],
               ),
               const Padding(
@@ -34,7 +36,7 @@ class _HappyViewState extends State<HappyView> {
                 child: Text(
                   "Congratulation",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       fontFamily: "Poppins"),
                 ),
