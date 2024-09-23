@@ -35,8 +35,25 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context) ;
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: AppColor.themeColor
+                            .withOpacity(0.1), // Light shade of themeColor
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(Icons.arrow_back,
+                          color: AppColor.themeColor),
+                    ),
+                  ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   SmallWidgets.circularIcon(context, Icons.lock_rounded),
                   SizedBox(
@@ -80,7 +97,7 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.055,
+                    height: MediaQuery.of(context).size.height * 0.020,
                   ),
                   RoundButton(
                       buttonText: "Next",
@@ -90,7 +107,6 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                               context, RoutesName.optVerificationScreen);
                         }
                       }),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   Center(
                     child: TextButton(
                         onPressed: () {

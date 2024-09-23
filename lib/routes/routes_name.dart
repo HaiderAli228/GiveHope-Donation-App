@@ -9,4 +9,5 @@ class RoutesName{
   static const String mobileNumberScreen = "mobile_number_screen" ;
   static const String optVerificationScreen = "opt_verification_screen" ;
   static const String newPasswordScreen = "new_password_screen" ;
+  static const String happyScreen = "happy_screen" ;
 }

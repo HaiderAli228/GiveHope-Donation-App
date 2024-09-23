@@ -39,8 +39,25 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context) ;
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: AppColor.themeColor
+                            .withOpacity(0.1), // Light shade of themeColor
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(Icons.arrow_back,
+                          color: AppColor.themeColor),
+                    ),
+                  ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   SmallWidgets.circularIcon(context, Icons.lock_clock_rounded),
                   SizedBox(
@@ -107,7 +124,7 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           Navigator.pushReplacementNamed(
-                              context, RoutesName.signinScreen);
+                              context, RoutesName.happyScreen);
                         }
                       })
                 ],

@@ -114,7 +114,9 @@ class _PaymentViewState extends State<PaymentView> {
                           } else {
                             try {
                               await StripeService.instance.makePayment(
-                                  int.parse(amountController.text), context);
+                                  int.parse(amountController.text), context).then((value) {
+                                    print("Haider Ali ") ;
+                                  },);
                               print("after the Stripe");
                               amountController.clear();
                             } catch (e) {

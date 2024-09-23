@@ -4,6 +4,8 @@ import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/button.dart';
+
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
 
@@ -35,10 +37,27 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context) ;
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: AppColor.themeColor
+                            .withOpacity(0.1), // Light shade of themeColor
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(Icons.arrow_back,
+                          color: AppColor.themeColor),
+                    ),
                   ),
-                  SmallWidgets.circularIcon(context, Icons.lock),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  SmallWidgets.circularIcon(context, Icons.phonelink_lock_rounded),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
@@ -80,35 +99,16 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       keyboardApperanceType: TextInputType.number,
                       prefixIconIs: Icons.phone),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.055,
+                    height: MediaQuery.of(context).size.height * 0.020,
                   ),
-                  InkWell(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(
-                            context, RoutesName.optVerificationScreen);
-                      }
-                    },
-                    child: Container(
-                      height: 54,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColor.themeColor),
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          color: AppColor.themeTextColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  RoundButton(
+                      buttonText: "Next",
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pushNamed(
+                              context, RoutesName.optVerificationScreen);
+                        }
+                      }),
                   Center(
                     child: TextButton(
                         onPressed: () {

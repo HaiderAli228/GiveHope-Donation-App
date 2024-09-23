@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.themeColor),
         useMaterial3: true,
       ),
-      initialRoute: RoutesName.paymentScreen,
+      initialRoute: RoutesName.introScreen,
       onGenerateRoute: Routes.generatedRoutes,
     );
   }
