@@ -4,6 +4,7 @@ import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
@@ -41,7 +42,7 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context) ;
+                      Navigator.pop(context);
                     },
                     child: Container(
                       height: 50,
@@ -98,6 +99,12 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   SmallWidgets.textIs("New Password"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Password required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 characters long")
+                      ]).call,
                       focusNode: newPasswordFocusNode,
                       nextFocusNode: cNewPasswordFocusNode,
                       suffixIconIs: Icons.visibility_off,
@@ -110,6 +117,18 @@ class NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   SmallWidgets.textIs("Confirm New Password"),
                   CustomTextField(
+                      fieldValidator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Confirm password is required";
+                        }
+                        if (value.length < 8) {
+                          return "Password must be at least 8 characters long";
+                        }
+                        if (value != _newPasswordController.text) {
+                          return "Passwords do not match";
+                        }
+                        return null; // Return null if there is no error
+                      },
                       focusNode: cNewPasswordFocusNode,
                       controllerIs: _cNewPasswordController,
                       hintTextIs: "confirm new password",

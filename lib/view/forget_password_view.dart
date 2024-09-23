@@ -4,6 +4,7 @@ import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -91,6 +92,10 @@ class ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Email required"),
+                        EmailValidator(errorText: "Enter valid email"),
+                      ]).call,
                       focusNode: _emailFocusNode,
                       controllerIs: _emailController,
                       hintTextIs: "example@gmail.com",

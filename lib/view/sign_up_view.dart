@@ -3,6 +3,7 @@ import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -77,6 +78,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Name"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Name required"),
+                      ]).call,
                       controllerIs: _userNameController,
                       focusNode: _userNameFocusNode,
                       nextFocusNode: _emailFocusNode,
@@ -88,6 +92,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Email required"),
+                        EmailValidator(errorText: "Enter Valid email address")
+                      ]).call,
                       controllerIs: _emailController,
                       focusNode: _emailFocusNode,
                       nextFocusNode: _passwordFocusNode,
@@ -99,6 +107,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Password required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 characters long")
+                      ]).call,
                       focusNode: _passwordFocusNode,
                       keyboardApperanceType: TextInputType.emailAddress,
                       nextFocusNode: _confirmPasswordFocusNode,
@@ -110,11 +124,24 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SmallWidgets.textIs("Confirm password"),
                   CustomTextField(
-                      keyboardApperanceType: TextInputType.emailAddress,
-                      focusNode: _confirmPasswordFocusNode,
-                      controllerIs: _confirmPasswordController,
-                      suffixIconIs: Icons.visibility_off,
-                      prefixIconIs: Icons.lock),
+                    fieldValidator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Confirm password is required";
+                      }
+                      if (value.length < 8) {
+                        return "Password must be at least 8 characters long";
+                      }
+                      if (value != _passwordController.text) {
+                        return "Passwords do not match";
+                      }
+                      return null; // Return null if there is no error
+                    },
+                    keyboardApperanceType: TextInputType.emailAddress,
+                    focusNode: _confirmPasswordFocusNode,
+                    controllerIs: _confirmPasswordController,
+                    suffixIconIs: Icons.visibility_off,
+                    prefixIconIs: Icons.lock,
+                  ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   InkWell(
                     onTap: () {

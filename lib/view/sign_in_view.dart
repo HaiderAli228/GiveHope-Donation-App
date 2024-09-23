@@ -3,6 +3,7 @@ import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -92,6 +93,10 @@ class SignInScreenState extends State<SignInScreen> {
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
                       controllerIs: _emailController,
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Email required"),
+                        EmailValidator(errorText: "Enter a valid email"),
+                      ]).call,
                       focusNode: _emailFocusNode,
                       nextFocusNode: _passwordFocusNode,
                       hintTextIs: "example@gmail.com",
@@ -102,7 +107,13 @@ class SignInScreenState extends State<SignInScreen> {
                   ),
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
-                      focusNode: _emailFocusNode,
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Password required"),
+                        MinLengthValidator(8,
+                            errorText:
+                                "Password must be at least 8 characters long")
+                      ]).call,
+                      focusNode: _passwordFocusNode,
                       keyboardApperanceType: TextInputType.emailAddress,
                       controllerIs: _passwordController,
                       suffixIconIs: Icons.visibility_off,

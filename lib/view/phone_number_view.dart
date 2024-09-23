@@ -3,6 +3,7 @@ import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:donation_app/utils/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 import '../utils/button.dart';
 
@@ -39,7 +40,7 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context) ;
+                      Navigator.pop(context);
                     },
                     child: Container(
                       height: 50,
@@ -57,7 +58,8 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  SmallWidgets.circularIcon(context, Icons.phonelink_lock_rounded),
+                  SmallWidgets.circularIcon(
+                      context, Icons.phonelink_lock_rounded),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
@@ -93,9 +95,14 @@ class PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   ),
                   SmallWidgets.textIs("Phone Number"),
                   CustomTextField(
+                      fieldValidator: MultiValidator([
+                        RequiredValidator(errorText: "Phone Number required"),
+                        PatternValidator(r'^03[0-9]{9}$',
+                            errorText: "Enter valid Pakistani phone number"),
+                      ]).call,
                       focusNode: _mobileNumFocusNode,
                       controllerIs: _mobileNumController,
-                      hintTextIs: "+92-300-0000000",
+                      hintTextIs: "0300-0000000",
                       keyboardApperanceType: TextInputType.number,
                       prefixIconIs: Icons.phone),
                   SizedBox(

@@ -3,7 +3,7 @@ import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/small_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import '../routes/routes_name.dart';
 
 class OPTVerificationScreen extends StatefulWidget {
@@ -14,6 +14,21 @@ class OPTVerificationScreen extends StatefulWidget {
 }
 
 class OPTVerificationScreenState extends State<OPTVerificationScreen> {
+  String _enteredOTP = ''; // Variable to store entered OTP
+  final String _correctOTP = '123456'; // Example correct OTP
+
+  // Function to validate OTP
+  bool _validateOTP(String enteredOTP) {
+    if (enteredOTP.length != 6) {
+      Fluttertoast.showToast(msg: 'Please enter a 6-digit OTP');
+      return false;
+    } else if (enteredOTP != _correctOTP) {
+      Fluttertoast.showToast(msg: 'Invalid OTP. Please try again.');
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,14 +42,13 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context) ;
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
-                      color: AppColor.themeColor
-                          .withOpacity(0.1), // Light shade of themeColor
+                      color: AppColor.themeColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.all(8),
@@ -64,7 +78,7 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                     children: [
                       TextSpan(
                           text:
-                              "Enter code that send for your security to access password of your ",
+                              "Enter code that was sent to your email for security.",
                           style: TextStyle(
                               color: Colors.black, fontFamily: "Poppins")),
                       TextSpan(
@@ -84,14 +98,11 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                   height: MediaQuery.of(context).size.height * 0.035,
                 ),
                 SmallWidgets.textIs("Enter 6 digit code"),
-                const SizedBox(
-                  height: 5,
-                ),
+                const SizedBox(height: 5),
                 PinCodeTextField(
                   length: 6,
                   obscureText: false,
                   enablePinAutofill: true,
-                  enabled: true,
                   animationType: AnimationType.fade,
                   pinTheme: PinTheme(
                     activeColor: AppColor.themeColor,
@@ -104,7 +115,9 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                     fieldWidth: 40,
                   ),
                   onChanged: (value) {
-                    print(value);
+                    setState(() {
+                      _enteredOTP = value; // Update OTP value
+                    });
                   },
                   appContext: context,
                 ),
@@ -114,7 +127,12 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                 RoundButton(
                   buttonText: "Verify",
                   onPressed: () {
-                    Navigator.pushNamed(context, RoutesName.newPasswordScreen);
+                    // Validate the OTP when pressing "Verify"
+                    if (_validateOTP(_enteredOTP)) {
+                      // If OTP is correct, navigate to new password screen
+                      Navigator.pushNamed(
+                          context, RoutesName.newPasswordScreen);
+                    }
                   },
                 ),
               ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart'
+    as validator; // Alias to avoid conflict
 
 import 'app_color.dart';
 
@@ -9,9 +11,12 @@ class CustomTextField extends StatelessWidget {
   final IconData? suffixIconIs;
   final IconData? prefixIconIs;
   final FocusNode focusNode;
-  final FocusNode? nextFocusNode; // Add this for moving focus to the next field
+  final FocusNode? nextFocusNode;
+  final validator.FormFieldValidator<String>?
+      fieldValidator; // Use the alias for the validator
 
-  const CustomTextField({super.key,
+  const CustomTextField({
+    super.key,
     required this.controllerIs,
     required this.keyboardApperanceType,
     this.hintTextIs,
@@ -19,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIconIs,
     required this.focusNode,
     this.nextFocusNode,
+    this.fieldValidator, // Allow passing validators
   });
 
   @override
@@ -26,8 +32,12 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controllerIs,
       keyboardType: keyboardApperanceType,
+      validator:
+          fieldValidator, // Use the validator provided via the constructor
       focusNode: focusNode,
-      textInputAction: nextFocusNode != null ? TextInputAction.next : TextInputAction.done,
+
+      textInputAction:
+          nextFocusNode != null ? TextInputAction.next : TextInputAction.done,
       onFieldSubmitted: (_) {
         if (nextFocusNode != null) {
           FocusScope.of(context).requestFocus(nextFocusNode);
