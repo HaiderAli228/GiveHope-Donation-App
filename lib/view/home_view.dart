@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColor.backgroundBodyColor,
         drawer: Drawer(
+          backgroundColor: AppColor.backgroundBodyColor,
           child: Column(
             children: [
               const UserAccountsDrawerHeader(
@@ -76,11 +77,14 @@ class HomeView extends StatelessWidget {
               ),
               DrawerTile(
                 iconIs: const Icon(
-                  Icons.settings,
+                  Icons.contact_phone_rounded,
                   color: AppColor.themeColor,
                 ),
-                name: "Setting",
-                function: () {},
+                name: "Contact us",
+                function: () {
+                  print("Tap ") ;
+                  Navigator.pushNamed(context, RoutesName.contactUsScreen);
+                },
               ),
             ],
           ),

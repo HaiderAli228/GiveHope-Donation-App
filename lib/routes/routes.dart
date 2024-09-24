@@ -1,4 +1,5 @@
 import 'package:donation_app/routes/routes_name.dart';
+import 'package:donation_app/view/contact_us.dart';
 import 'package:donation_app/view/forget_password_view.dart';
 import 'package:donation_app/view/happy_view.dart';
 import 'package:donation_app/view/home_view.dart';
@@ -20,8 +21,10 @@ class Routes {
         return _createRoute(const HomeView());
       case RoutesName.newPasswordScreen:
         return _createRoute(const NewPasswordScreen());
+      case RoutesName.contactUsScreen:
+        return _createRoute(const ContactUsView());
       case RoutesName.notificationScreen:
-        return _createRoute(const NotificationView());
+        return _createRoute(NotificationView());
       case RoutesName.optVerificationScreen:
         return _createRoute(const OPTVerificationScreen());
       case RoutesName.forgetScreen:

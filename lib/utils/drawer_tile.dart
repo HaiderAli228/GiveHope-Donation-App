@@ -8,9 +8,9 @@ class DrawerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+      child: InkWell(
+        onTap: function,
         child: ListTile(
           leading: iconIs,
           title: Text(

@@ -11,4 +11,5 @@ class RoutesName{
   static const String newPasswordScreen = "new_password_screen" ;
   static const String happyScreen = "happy_screen" ;
   static const String notificationScreen = "notification_screen" ;
+  static const String contactUsScreen = "contact_us_screen" ;
 }
