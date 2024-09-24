@@ -1,3 +1,4 @@
+import 'package:donation_app/routes/routes_name.dart';
 import 'package:donation_app/utils/achievement_picture.dart';
 import 'package:donation_app/utils/app_color.dart';
 import 'package:donation_app/utils/button.dart';
@@ -124,6 +125,10 @@ class HomeView extends StatelessWidget {
                       ),
                       // Notification icon
                       GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutesName.notificationScreen);
+                        },
                         child: Container(
                           height: 50,
                           width: 50,

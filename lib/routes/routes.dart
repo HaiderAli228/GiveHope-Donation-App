@@ -4,6 +4,7 @@ import 'package:donation_app/view/happy_view.dart';
 import 'package:donation_app/view/home_view.dart';
 import 'package:donation_app/view/intro_view.dart';
 import 'package:donation_app/view/new_password_view.dart';
+import 'package:donation_app/view/notification_view.dart';
 import 'package:donation_app/view/opt_verification_view.dart';
 import 'package:donation_app/view/phone_number_view.dart';
 import 'package:donation_app/view/sign_in_view.dart';
@@ -19,6 +20,8 @@ class Routes {
         return _createRoute(const HomeView());
       case RoutesName.newPasswordScreen:
         return _createRoute(const NewPasswordScreen());
+      case RoutesName.notificationScreen:
+        return _createRoute(const NotificationView());
       case RoutesName.optVerificationScreen:
         return _createRoute(const OPTVerificationScreen());
       case RoutesName.forgetScreen:
@@ -51,10 +54,10 @@ class Routes {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => page,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const curve = Curves.easeInOut;  // Smooth curve for both entry and exit
+        const curve = Curves.easeInOut; // Smooth curve for both entry and exit
 
         var slideAnimation = Tween<Offset>(
-          begin: const Offset(0.0, 1.0),  // Slide from bottom to top
+          begin: const Offset(0.0, 1.0), // Slide from bottom to top
           end: Offset.zero,
         ).animate(CurvedAnimation(
           parent: animation,
@@ -62,8 +65,8 @@ class Routes {
         ));
 
         var fadeAnimation = Tween<double>(
-          begin: 0.0,  // Fade from transparent
-          end: 1.0,    // To fully visible
+          begin: 0.0, // Fade from transparent
+          end: 1.0, // To fully visible
         ).animate(CurvedAnimation(
           parent: animation,
           curve: curve,
@@ -78,7 +81,8 @@ class Routes {
         );
       },
       transitionDuration: const Duration(milliseconds: 700), // Smooth speed
-      reverseTransitionDuration: const Duration(milliseconds: 700), // Smooth for pop too
+      reverseTransitionDuration:
+          const Duration(milliseconds: 700), // Smooth for pop too
     );
   }
 }
