@@ -49,7 +49,9 @@ class HomeView extends StatelessWidget {
                   color: AppColor.themeColor,
                 ),
                 name: "Profile",
-                function: () {},
+                function: () {
+                  Navigator.pushNamed(context, RoutesName.profileScreen);
+                },
               ),
               DrawerTile(
                 iconIs: const Icon(
@@ -82,7 +84,7 @@ class HomeView extends StatelessWidget {
                 ),
                 name: "Contact us",
                 function: () {
-                  print("Tap ") ;
+                  print("Tap ");
                   Navigator.pushNamed(context, RoutesName.contactUsScreen);
                 },
               ),

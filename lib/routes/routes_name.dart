@@ -12,4 +12,5 @@ class RoutesName{
   static const String happyScreen = "happy_screen" ;
   static const String notificationScreen = "notification_screen" ;
   static const String contactUsScreen = "contact_us_screen" ;
+  static const String profileScreen = "profile_screen" ;
 }

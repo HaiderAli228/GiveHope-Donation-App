@@ -8,6 +8,7 @@ import 'package:donation_app/view/new_password_view.dart';
 import 'package:donation_app/view/notification_view.dart';
 import 'package:donation_app/view/opt_verification_view.dart';
 import 'package:donation_app/view/phone_number_view.dart';
+import 'package:donation_app/view/profile_view.dart';
 import 'package:donation_app/view/sign_in_view.dart';
 import 'package:donation_app/view/payment_view.dart';
 import 'package:donation_app/view/sign_up_view.dart';
@@ -21,6 +22,8 @@ class Routes {
         return _createRoute(const HomeView());
       case RoutesName.newPasswordScreen:
         return _createRoute(const NewPasswordScreen());
+      case RoutesName.profileScreen:
+        return _createRoute(const ProfileView());
       case RoutesName.contactUsScreen:
         return _createRoute(const ContactUsView());
       case RoutesName.notificationScreen:
