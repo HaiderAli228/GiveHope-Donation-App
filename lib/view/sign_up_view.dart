@@ -22,6 +22,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   final _passwordFocusNode = FocusNode();
   final _confirmPasswordFocusNode = FocusNode();
   final _userNameFocusNode = FocusNode();
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -32,20 +33,22 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Screen dimensions for responsiveness
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColor.backgroundBodyColor,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(screenWidth * 0.04), // 4% padding
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                  ),
+                  SizedBox(height: screenHeight * 0.05), // 5% top space
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     child: Text(
@@ -73,9 +76,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
+                  SizedBox(height: screenHeight * 0.03), // 3% vertical space
+
+                  // Name Input
                   SmallWidgets.textIs("Name"),
                   CustomTextField(
                       fieldValidator: MultiValidator([
@@ -86,15 +89,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                       nextFocusNode: _emailFocusNode,
                       hintTextIs: "Haider Ali",
                       keyboardApperanceType: TextInputType.text,
-                      prefixIconIs: Icons.alternate_email),
+                      prefixIconIs: Icons.person),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.013,
-                  ),
+                      height: screenHeight *
+                          0.02), // Adjust height for responsiveness
+
+                  // Email Input
                   SmallWidgets.textIs("Email Address"),
                   CustomTextField(
                       fieldValidator: MultiValidator([
                         RequiredValidator(errorText: "Email required"),
-                        EmailValidator(errorText: "Enter Valid email address")
+                        EmailValidator(errorText: "Enter valid email address")
                       ]).call,
                       controllerIs: _emailController,
                       focusNode: _emailFocusNode,
@@ -103,8 +108,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                       keyboardApperanceType: TextInputType.emailAddress,
                       prefixIconIs: Icons.alternate_email),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.013,
-                  ),
+                      height: screenHeight *
+                          0.02), // Adjust height for responsiveness
+
+                  // Password Input
                   SmallWidgets.textIs("Password"),
                   CustomTextField(
                       fieldValidator: MultiValidator([
@@ -120,8 +127,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                       suffixIconIs: Icons.visibility_off,
                       prefixIconIs: Icons.lock),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.013,
-                  ),
+                      height: screenHeight *
+                          0.02), // Adjust height for responsiveness
+
+                  // Confirm Password Input
                   SmallWidgets.textIs("Confirm password"),
                   CustomTextField(
                     fieldValidator: (value) {
@@ -134,7 +143,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       if (value != _passwordController.text) {
                         return "Passwords do not match";
                       }
-                      return null; // Return null if there is no error
+                      return null;
                     },
                     keyboardApperanceType: TextInputType.emailAddress,
                     focusNode: _confirmPasswordFocusNode,
@@ -142,7 +151,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                     suffixIconIs: Icons.visibility_off,
                     prefixIconIs: Icons.lock,
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  SizedBox(
+                      height: screenHeight *
+                          0.05), // Adjust height for responsiveness
+
+                  // Sign Up Button
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
@@ -151,25 +164,32 @@ class SignUpScreenState extends State<SignUpScreen> {
                       }
                     },
                     child: Container(
-                      height: 54,
+                      height: screenHeight *
+                          0.07, // Responsive height for the button
                       width: double.infinity,
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.all(6),
+                      padding:
+                          EdgeInsets.all(screenWidth * 0.015), // Adjust padding
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColor.themeColor),
-                      child: const Text(
-                        "Sign up ",
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColor.themeColor,
+                      ),
+                      child: Text(
+                        "Sign up",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           color: AppColor.themeTextColor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 19,
+                          fontSize: screenWidth * 0.05, // Responsive font size
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  SizedBox(
+                      height: screenHeight *
+                          0.02), // Adjust height for responsiveness
+
+                  // Sign In Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -180,18 +200,18 @@ class SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.signinScreen);
-                          },
-                          child: const Text(
-                            "Sign in",
-                            style: TextStyle(
-                                color: AppColor.themeColor,
-                                fontFamily: "Poppins"),
-                          ))
+                        onPressed: () {
+                          Navigator.pushNamed(context, RoutesName.signinScreen);
+                        },
+                        child: const Text(
+                          "Sign in",
+                          style: TextStyle(
+                              color: AppColor.themeColor,
+                              fontFamily: "Poppins"),
+                        ),
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
