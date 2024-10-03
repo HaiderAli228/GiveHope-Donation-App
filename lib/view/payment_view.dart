@@ -1,7 +1,6 @@
 import 'package:donation_app/utils/button.dart';
 import 'package:donation_app/utils/dialog_box.dart';
 import 'package:flutter/material.dart';
-
 import '../routes/routes_name.dart';
 import '../utils/app_color.dart';
 import '../utils/small_widgets.dart';
@@ -21,19 +20,21 @@ class _PaymentViewState extends State<PaymentView> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final double padding = size.width * 0.04; // Padding based on screen width
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
-          // Unfocus the text field when tapping outside
-          FocusScope.of(context).unfocus();
+          FocusScope.of(context).unfocus(); // Unfocus the text field when tapping outside
         },
         child: Stack(
           children: [
             SingleChildScrollView(
               child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(15),
+                  padding: EdgeInsets.all(padding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -43,25 +44,24 @@ class _PaymentViewState extends State<PaymentView> {
                               context, RoutesName.signUpScreen);
                         },
                         child: Container(
-                          height: 50,
-                          width: 50,
+                          height: size.height * 0.07,
+                          width: size.height * 0.07,
                           decoration: BoxDecoration(
-                            color: AppColor.themeColor
-                                .withOpacity(0.1), // Light shade of themeColor
+                            color: AppColor.themeColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(size.height * 0.015),
                           child: const Icon(Icons.arrow_back,
                               color: AppColor.themeColor),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: size.height * 0.03,
                       ),
                       SmallWidgets.circularIcon(
                           context, Icons.attach_money_outlined),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 5),
@@ -77,8 +77,7 @@ class _PaymentViewState extends State<PaymentView> {
                         text: const TextSpan(
                           children: [
                             TextSpan(
-                                text:
-                                "Join the movement for change. Donate to give hope to ",
+                                text: "Join the movement for change. Donate to give hope to ",
                                 style: TextStyle(
                                     color: Colors.black, fontFamily: "Poppins")),
                             TextSpan(
@@ -95,15 +94,19 @@ class _PaymentViewState extends State<PaymentView> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       SmallWidgets.textIs("Enter Amount"),
                       CustomTextField(
-                          controllerIs: amountController,
-                          hintTextIs: "Rs.3000",
-                          focusNode: amountFocusNode,
-                          keyboardApperanceType: TextInputType.number,
-                          prefixIconIs: Icons.attach_money_rounded),
+                        controllerIs: amountController,
+                        hintTextIs: "Rs.3000",
+                        focusNode: amountFocusNode,
+                        keyboardApperanceType: TextInputType.number,
+                        prefixIconIs: Icons.attach_money_rounded,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.03,
+                      ),
                       RoundButton(
                         buttonText: "Next",
                         onPressed: () async {
@@ -113,15 +116,19 @@ class _PaymentViewState extends State<PaymentView> {
                             return;
                           } else {
                             try {
-                              await StripeService.instance.makePayment(
-                                  int.parse(amountController.text), context).then((value) {
-                                    print("Haider Ali ") ;
-                                  },);
-                              print("after the Stripe");
+                              await StripeService.instance
+                                  .makePayment(
+                                  int.parse(amountController.text), context)
+                                  .then(
+                                    (value) {
+                                  print("Payment processed successfully");
+                                },
+                              );
                               amountController.clear();
                             } catch (e) {
                               print('Error in payment process: $e');
-                              DialogBox.errorDialogBox(context, "Payment failed", "Try again.");
+                              DialogBox.errorDialogBox(
+                                  context, "Payment failed", "Try again.");
                             }
                           }
                         },
@@ -131,7 +138,7 @@ class _PaymentViewState extends State<PaymentView> {
                 ),
               ),
             ),
-            // Show CircularProgressIndicator when isLoading is true
+            // Additional UI elements such as loading indicators can be placed here
           ],
         ),
       ),
