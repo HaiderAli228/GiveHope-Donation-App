@@ -163,8 +163,9 @@ class NotificationView extends StatelessWidget {
                             final notificationList =
                                 groupedNotifications[label] ?? [];
 
-                            if (notificationList.isEmpty)
-                              return SizedBox(); // If no notifications under this label, skip
+                            if (notificationList.isEmpty) {
+                              return const SizedBox(); // If no notifications under this label, skip
+                            }
 
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
