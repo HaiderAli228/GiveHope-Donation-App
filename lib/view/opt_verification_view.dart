@@ -31,12 +31,19 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen height and width
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColor.backgroundBodyColor,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.05,
+              vertical: screenHeight * 0.02,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,57 +52,69 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    height: 50,
-                    width: 50,
+                    height: screenHeight * 0.07,
+                    width: screenHeight * 0.07,
                     decoration: BoxDecoration(
                       color: AppColor.themeColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    padding: const EdgeInsets.all(8),
+                    padding: EdgeInsets.all(screenHeight * 0.02),
                     child: const Icon(Icons.arrow_back,
                         color: AppColor.themeColor),
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: screenHeight * 0.02,
                 ),
-                SmallWidgets.circularIcon(context, Icons.mail_lock_rounded),
+                SmallWidgets.circularIcon(
+                  context,
+                  Icons.mail_lock_rounded,
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: screenHeight * 0.02,
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
                     "Verification",
                     style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Poppins"),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins",
+                    ),
                   ),
                 ),
                 RichText(
                   text: const TextSpan(
                     children: [
                       TextSpan(
-                          text:
-                              "Enter code that was sent to your email for security.",
-                          style: TextStyle(
-                              color: Colors.black, fontFamily: "Poppins")),
+                        text:
+                            "Enter code that was sent to your email for security.",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                       TextSpan(
-                          text: " GiveHope ",
-                          style: TextStyle(
-                              color: AppColor.themeColor,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Poppins")),
+                        text: " GiveHope ",
+                        style: TextStyle(
+                          color: AppColor.themeColor,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                       TextSpan(
-                          text: "account.",
-                          style: TextStyle(
-                              color: Colors.black, fontFamily: "Poppins")),
+                        text: "account.",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.035,
+                  height: screenHeight * 0.035,
                 ),
                 SmallWidgets.textIs("Enter 6 digit code"),
                 const SizedBox(height: 5),
@@ -111,8 +130,8 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                     selectedColor: AppColor.themeColor,
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(8),
-                    fieldHeight: 50,
-                    fieldWidth: 40,
+                    fieldHeight: screenHeight * 0.07,
+                    fieldWidth: screenWidth * 0.12,
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -122,7 +141,7 @@ class OPTVerificationScreenState extends State<OPTVerificationScreen> {
                   appContext: context,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.055,
+                  height: screenHeight * 0.055,
                 ),
                 RoundButton(
                   buttonText: "Verify",
