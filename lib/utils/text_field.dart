@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart'
-    as validator; // Alias to avoid conflict
+import 'package:form_field_validator/form_field_validator.dart' as validator;
 
 import 'app_color.dart';
 
@@ -12,8 +11,7 @@ class CustomTextField extends StatelessWidget {
   final IconData? prefixIconIs;
   final FocusNode focusNode;
   final FocusNode? nextFocusNode;
-  final validator.FormFieldValidator<String>?
-      fieldValidator; // Use the alias for the validator
+  final validator.FormFieldValidator<String>? fieldValidator;
 
   const CustomTextField({
     super.key,
@@ -24,7 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIconIs,
     required this.focusNode,
     this.nextFocusNode,
-    this.fieldValidator, // Allow passing validators
+    this.fieldValidator,
   });
 
   @override
@@ -32,12 +30,10 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controllerIs,
       keyboardType: keyboardApperanceType,
-      validator:
-          fieldValidator, // Use the validator provided via the constructor
+      validator: fieldValidator,
       focusNode: focusNode,
-
       textInputAction:
-          nextFocusNode != null ? TextInputAction.next : TextInputAction.done,
+      nextFocusNode != null ? TextInputAction.next : TextInputAction.done,
       onFieldSubmitted: (_) {
         if (nextFocusNode != null) {
           FocusScope.of(context).requestFocus(nextFocusNode);
@@ -59,15 +55,19 @@ class CustomTextField extends StatelessWidget {
           prefixIconIs,
           color: Colors.grey,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(color: AppColor.lightColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(color: AppColor.lightColor),
-        ),
+        enabledBorder: _buildBorder(AppColor.lightColor),
+        focusedBorder: _buildBorder(AppColor.lightColor),
+        errorBorder: _buildBorder(AppColor.lightColor),
+        focusedErrorBorder: _buildBorder(AppColor.lightColor),
+        errorStyle: const TextStyle(height: 0), // To hide error text below field if needed
       ),
+    );
+  }
+
+  OutlineInputBorder _buildBorder(Color color) {
+    return OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide(color: color),
     );
   }
 }
