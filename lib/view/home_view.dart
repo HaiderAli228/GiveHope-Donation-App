@@ -301,7 +301,9 @@ class HomeView extends StatelessWidget {
                     Icons.fastfood_rounded),
                 RoundButton(
                   buttonText: "Donate now",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, RoutesName.paymentScreen);
+                  },
                 )
               ],
             ),
