@@ -121,12 +121,14 @@ class _PaymentViewState extends State<PaymentView> {
                                   int.parse(amountController.text), context)
                                   .then(
                                     (value) {
-                                  print("Payment processed successfully");
-                                },
+                                      debugPrint("Payment processed successfully");
+
+                                    },
                               );
                               amountController.clear();
                             } catch (e) {
-                              print('Error in payment process: $e');
+                              debugPrint("Error is : $e");
+
                               DialogBox.errorDialogBox(
                                   context, "Payment failed", "Try again.");
                             }
