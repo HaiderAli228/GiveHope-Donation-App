@@ -38,6 +38,7 @@ class _PaymentViewState extends State<PaymentView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacementNamed(
