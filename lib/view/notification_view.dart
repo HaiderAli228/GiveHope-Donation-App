@@ -138,6 +138,7 @@ class NotificationView extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.014),
               Expanded(
+
                 child: notifications.isEmpty
                     ? Center(
                         child: Column(
